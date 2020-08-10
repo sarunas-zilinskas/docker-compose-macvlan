@@ -6,6 +6,8 @@ This gives you the ability to deploy containers with static IP address which is 
 You can reach container with that IP address however you can not reach it from the host machine itself.
 For that to work - one needs to add another interface and route the containers used IP address (or range) trough new interface.
 
+## Enable host to container networking
+
 Add new interface (Interface name is dockervlan, and eth0 is host interface):
 
 `ip link add dockervlan link eth0 type macvlan mode bridge`
