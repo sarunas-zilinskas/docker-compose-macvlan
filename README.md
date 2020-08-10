@@ -25,3 +25,19 @@ And finally define a range which should be routed trough that iterface:
 `ip route add 192.168.0.64/26 dev dockervlan`
 
 This is enough to make it work. Portainer now should be accessible from the host machine and all other machines within the same subnet/network.
+
+### Network used in example
+
+`eth0` is the host interface
+
+Gateway: `192.168.0.1`
+
+Subnet: `192.168.0.0/24`
+
+Host IP: `192.168.0.2`
+
+Interface name trough which traffic is routed: `dockervlan`
+
+Dockervlan interface IP: `192.168.0.249`
+
+dockervlan routed IP range: `192.168.0.64/26`
