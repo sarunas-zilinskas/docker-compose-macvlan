@@ -17,7 +17,7 @@ services:
         ipv4_address: 192.168.0.60
 
 networks:
-  vlan:
+  dockervlan:
     #This interface should be defined as using null driver. Do not remove it.
     driver: null
     driver_opts:
@@ -27,7 +27,7 @@ networks:
         - subnet: "192.168.0.0/24"
           ip_range: "192.168.0.64/26"
           gateway: "192.168.0.1"
-  vlan:
+  dockervlan:
     #This is the interface which is used for containers networking
     driver: macvlan
     driver_opts:
