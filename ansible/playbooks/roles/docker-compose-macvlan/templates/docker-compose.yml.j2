@@ -21,19 +21,19 @@ networks:
     #This interface should be defined as using null driver. Do not remove it.
     driver: null
     driver_opts:
-      parent: eth0
+      parent: {{ nic_name }}
     ipam:
       config:
-        - subnet: "192.168.0.0/24"
-          ip_range: "192.168.0.64/26"
-          gateway: "192.168.0.1"
+        - subnet: "{{ network_subnet }}"
+          ip_range: "{{ network_ip_range }}"
+          gateway: "{{ network_gateway }}"
   dockervlan:
     #This is the interface which is used for containers networking
     driver: macvlan
     driver_opts:
-      parent: eth0
+      parent: {{ nic_name }}
     ipam:
       config:
-        - subnet: "192.168.0.0/24"
-          ip_range: "192.168.0.64/26"
-          gateway: "192.168.0.1"
+        - subnet: "{{ network_subnet }}"
+          ip_range: "{{ network_ip_range }}"
+          gateway: "{{ network_gateway }}"
