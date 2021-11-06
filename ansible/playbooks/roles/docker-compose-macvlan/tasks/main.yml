@@ -1,0 +1,39 @@
+- name: "Template docker-compose file"
+  tags: docker-compose
+  template:
+    src: docker-compose.yml.j2
+    dest: /home/{{ username }}/docker-compose.yml
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+
+### host to container networking
+- name: "Enable host to container networking"
+  tags: dockernetwork
+  shell: "ip link add {{ dockernetwork_name }} link {{ nic_name }} type macvlan mode bridge ; ip addr add {{ dockernetwork_ip_address }} dev {{ dockernetwork_name }} ; ip link set {{ dockernetwork_name }} up"
+  ignore_errors: yes
+
+- name: "Enable host to container networking - route docker network range trough docker network interface"
+  tags: dockernetwork
+  shell: "ip route add {{ dockernetwork_ip_range }} dev {{ dockernetwork_name }}"
+  ignore_errors: yes
+
+
+### Script templating and execute during boot
+- name: "Template Enable-host-to-container-networking.sh script"
+  tags: dockernetwork
+  template:
+    src: Enable-host-to-container-networking.sh.j2
+    dest: /home/{{ username }}/Enable-host-to-container-networking.sh
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0744
+
+- name: "Cron - Enable-host-to-container-networking.sh on startup"
+  tags: dockernetwork,cron
+  cron:
+    name: Container to host networking
+    special_time: reboot
+    state: present
+    job: '/bin/bash /home/{{ username }}/Enable-host-to-container-networking.sh >/dev/null 2>&1'

@@ -1,0 +1,12 @@
+    - role: docker-compose-macvlan
+      tags: docker
+      vars:
+        username: "user"
+        nic_name: "eth0"
+        dockernetwork_name: "dockervlan"
+        network_subnet: "192.168.0.0/24"
+        network_ip_range: "192.168.0.64/26"
+        network_gateway: "192.168.0.1"
+        dockernetwork_ip_address: "192.168.0.249/32"
+        dockernetwork_ip_range: "192.168.0.64/26"
+        portainer_ip: "192.168.0.60"
