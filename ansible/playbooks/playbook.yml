@@ -2,11 +2,11 @@
       tags: docker
       vars:
         username: "user" #home dir username i.e. /home/user/
-        nic_name: "eth0"
+        nic_name: "eth0" #Host nic interface name
         dockernetwork_name: "dockervlan"
         network_subnet: "192.168.0.0/24"
         network_ip_range: "192.168.0.64/26"
         network_gateway: "192.168.0.1"
         dockernetwork_ip_address: "192.168.0.249/32"
-        dockernetwork_ip_range: "192.168.0.64/26"
+        dockernetwork_ip_range: "192.168.0.64/26" #dockernetwork_ip_range can not be bigger than network_ip_range but can be the same size.
         portainer_ip: "192.168.0.60"
