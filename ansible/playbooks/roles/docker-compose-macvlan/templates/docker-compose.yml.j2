@@ -1,0 +1,39 @@
+---
+version: '2.4'
+services:
+
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /path/to/data:/data 
+    ports:
+      - 8000:8000
+      - 9000:9000
+    networks:
+      vlan:
+        ipv4_address: {{ portainer_ip }}
+
+networks:
+  dockervlan:
+    #This interface should be defined as using null driver. Do not remove it.
+    driver: null
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: "192.168.0.0/24"
+          ip_range: "192.168.0.64/26"
+          gateway: "192.168.0.1"
+  dockervlan:
+    #This is the interface which is used for containers networking
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: "192.168.0.0/24"
+          ip_range: "192.168.0.64/26"
+          gateway: "192.168.0.1"
