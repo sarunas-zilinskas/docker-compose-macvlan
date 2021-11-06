@@ -1,7 +1,7 @@
     - role: docker-compose-macvlan
       tags: docker
       vars:
-        username: "user"
+        username: "user" #home dir username i.e. /home/user/
         nic_name: "eth0"
         dockernetwork_name: "dockervlan"
         network_subnet: "192.168.0.0/24"
