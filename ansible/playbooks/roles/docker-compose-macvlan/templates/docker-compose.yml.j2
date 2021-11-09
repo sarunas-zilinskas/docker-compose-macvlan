@@ -17,18 +17,8 @@ services:
         ipv4_address: {{ portainer_ip }}
 
 networks:
-  dockervlan:
-    #This interface should be defined as using null driver. Do not remove it.
-    driver: null
-    driver_opts:
-      parent: {{ nic_name }}
-    ipam:
-      config:
-        - subnet: "{{ network_subnet }}"
-          ip_range: "{{ network_ip_range }}"
-          gateway: "{{ network_gateway }}"
-  dockervlan:
-    #This is the interface which is used for containers networking
+  {{ dockernetwork_name }}:
+    name: {{ dockernetwork_name }}
     driver: macvlan
     driver_opts:
       parent: {{ nic_name }}
