@@ -2,5 +2,5 @@
 
 sleep 15 #Do not rush things if executing during boot. This line is not mandatory and can be removed.
 
-ip link add {{ dockernetwork_name }} link {{ nic_name }} type macvlan mode bridge ; ip addr add {{ dockernetwork_ip_address }} dev {{ dockernetwork_name }} ; ip link set {{ dockernetwork_name }} up
-ip route add {{ dockernetwork_ip_range }} dev {{ dockernetwork_name }}
+ip link add {{ docker_routing_interface_name }} link {{ nic_name }} type macvlan mode bridge ; ip addr add {{ dockernetwork_ip_address }} dev {{ docker_routing_interface_name }} ; ip link set {{ docker_routing_interface_name }} up
+ip route add {{ dockernetwork_ip_range }} dev {{ docker_routing_interface_name }}
