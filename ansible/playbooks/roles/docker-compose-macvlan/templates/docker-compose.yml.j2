@@ -13,7 +13,7 @@ services:
       - 8000:8000
       - 9000:9000
     networks:
-      vlan:
+      {{ dockernetwork_name }}:
         ipv4_address: {{ portainer_ip }}
 
 networks:
