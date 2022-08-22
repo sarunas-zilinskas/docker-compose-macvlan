@@ -37,3 +37,8 @@ Interface name trough which traffic is routed: `dockerrouteif`
 Docker VLAN name: `Dockervlan`
 Dockervlan interface IP: `192.168.0.249`  
 dockervlan routed IP range: `192.168.0.64/26`  
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
