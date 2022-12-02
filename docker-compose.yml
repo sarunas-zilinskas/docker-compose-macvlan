@@ -8,10 +8,13 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /path/to/data:/data 
-    ports:
-      - 8000:8000
-      - 9000:9000
+      - /path/to/data:/data
+# Ports section technically is not needed since using vlan means traffic can go trough all ports regardless of port mapping.
+# Port mapping does not work with vlan. If you need any mapping/filtering/blacklisting/whitelisting etc. - do it on the firewall.
+# However you can keep it commented as a placeholder for quick look-up which ports are being used by default if need be or getting rid of vlan.
+#    ports:
+#      - 8000:8000
+#      - 9000:9000
     networks:
       dockervlan:
         ipv4_address: 192.168.0.60
